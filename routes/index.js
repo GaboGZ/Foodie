@@ -2,6 +2,8 @@ const express = require("express");
 const router = express.Router();
 const path = require("path");
 
+// require('dotenv').config();
+
 const flickr = require("../services/flickr");
 const zomato = require("../services/zomato");
 
@@ -16,7 +18,7 @@ const options = {
     { city_name: "Melbourne", lat: -37.813, lon: 144.963 },
     { city_name: "Newcastle", lat: -32.928, lon: 151.781 },
     { city_name: "Perth", lat: -31.950, lon: 115.860 },
-    { city_name: "Sydney", lat: -33.868, lon: 151.209 },
+    { city_name: "Sydney", lat: -33.868, lon: 151.209 }
   ]
 };
 
@@ -51,6 +53,7 @@ module.exports = (PORT) => {
             city: "Brisbane",
             request: {},
             categories,
+            google_key: process.env.GOOGLE_API_KEY
           });
         });
       } catch (error) {
@@ -81,6 +84,7 @@ module.exports = (PORT) => {
           options,
           city,
           collections: response,
+          google_key: process.env.GOOGLE_API_KEY
         });
       })
       .catch((error) => console.log(error));
@@ -117,6 +121,7 @@ module.exports = (PORT) => {
             city: "Sydney",
             request: {},
             categories,
+            // google_key: process.env.GOOGLE_API_KEY
           });
         });
       } catch (error) {
@@ -157,6 +162,7 @@ module.exports = (PORT) => {
           options,
           city,
           cuisines: c,
+          // google_key: process.env.GOOGLE_API_KEY
         });
       });
     });
@@ -177,6 +183,7 @@ module.exports = (PORT) => {
         options,
         city: "",
         cuisines: response,
+        google_key: process.env.GOOGLE_API_KEY
       });
     });
   });
@@ -205,6 +212,7 @@ module.exports = (PORT) => {
           cities: options.cities,
           city,
           restaurants: response,
+          // google_key: process.env.GOOGLE_API_KEY
         });
       });
   });
@@ -240,6 +248,7 @@ module.exports = (PORT) => {
             city,
             restaurant,
             images,
+            // google_key: process.env.GOOGLE_API_KEY
           });
         });
       })
@@ -264,6 +273,7 @@ module.exports = (PORT) => {
           options,
           photos,
           query,
+          // google_key: process.env.GOOGLE_API_KEY
         });
       })
       .catch((error) => console.log(error));
