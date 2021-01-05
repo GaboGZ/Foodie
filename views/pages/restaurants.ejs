@@ -1,0 +1,40 @@
+<div class="w3-container">
+
+    <%- include('../layout/partials/sub-header') %> 
+    <div class="w3-container">
+        <p><span class="w3-tag">Results <%= restaurants.results_found %></span></p>
+        <p class="w3-hide"><%= restaurants.results_start %></p>
+        <p><span class="w3-tag">TOP <%= restaurants.results_shown %></span></p>
+    </div>
+
+    <div class="w3-row-padding">
+        <% restaurants.restaurants.forEach( (restaurant) => { %>
+        <div class="w3-col s12 m4 l4" style="margin-bottom: 20px;">
+            <div class="w3-card restaurant-card" style="min-height: 400px;">
+                <div class="w3-padding w3-xlarge restaurant-name"><%= restaurant.restaurant.name %></div>
+                <div class="w3-container-fluid">
+                    <img src="<%= restaurant.restaurant.featured_image %>"
+                        style="width:100%;min-height: 350px;max-width: height 350px;">
+                </div>
+                <div class="w3-padding">
+                    <span class="w3-tag" style="margin:5px;"><%= restaurant.restaurant.cuisines %></span><br>
+                    <span style="margin:5px;"><b><%= restaurant.restaurant.establishment %></b></span><br>
+                    
+                    <div class="restaurant-coordinates w3-hide">
+                        <span class="restaurant-lat"><%= restaurant.restaurant.location.latitude %></span>
+                        <span class="restaurant-lon"><%= restaurant.restaurant.location.longitude %></span><br>
+                    </div>
+                    <span><i class="fas fa-map-pin"></i>
+                        <%= restaurant.restaurant.location.locality_verbose %></span><br>
+                    <span style=""><i class="fas fa-phone"></i> <%= restaurant.restaurant.phone_numbers %></span>
+                    <div class="w3-row">
+                        <span class="w3-left"><i class="fas fa-coffee"></i>
+                            <%=restaurant.restaurant.user_rating.aggregate_rating%> of
+                            <%= restaurant.restaurant.user_rating.votes %> votes</span>
+                        <a class="w3-button w3-black w3-right"
+                            href="../restaurants/view?query=<%= restaurant.restaurant.id %>&city=<%=city%>">View</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <% }); %>

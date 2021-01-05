@@ -1,0 +1,9 @@
+<div class="w3-container">
+    <span id="city-name" class="w3-tag w3-xlarge"><%= city %></span>
+    <% cities.forEach( (item) => { %>
+    <% if (item.city_name === city ) { %>
+    <span id="nav-lat" class="w3-tag w3-round"><%= item.lat %></span> 
+    <span id="nav-lon" class="w3-tag w3-round"><%= item.lon %></span>
+    <%}%>
+    <% }); %>
+</div>

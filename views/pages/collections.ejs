@@ -1,0 +1,30 @@
+<div class="w3-container">
+    <div class="w3-container">
+        <span class="w3-tag w3-xlarge"><%= city %></span>
+        <% cities.forEach( (item) => { %>
+        <% if (item.city_name === city ) { %>
+        <span class="w3-tag w3-round"><%= item.lat %></span> <span class="w3-tag w3-round"><%= item.lon %></span>
+        <%}%>
+        <% }); %>
+    </div>
+    <div class="w3-row-padding" style="margin-top:10px;">
+        <% collections.forEach( (collection) => { %>
+        <div class="w3-col s6 m4 l4">
+            <div class="w3-card" style="min-height: 400px;">
+                <div class="w3-padding w3-xlarge"><%= collection.collection.title %></div>
+                <div class="w3-container-fluid">
+                    <img src="<%= collection.collection.image_url %>" style="width:100%;">
+                </div>
+                <div class="w3-padding">
+                    <p style=""><%= collection.collection.description %></p>
+                    <div class="w3-row">
+                        <span class="w3-left"><i class="fas fa-coffee"></i>
+                            <%= collection.collection.res_count %></span>
+                        <a class="w3-button w3-black w3-right" href="#">View Locals</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <% }); %>
+    </div>
+</div>

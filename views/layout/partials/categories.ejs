@@ -1,0 +1,9 @@
+<div class="w3-container-fluid w3-margin">
+<% categories.forEach( (item) => { %>
+<div class="w3-tag w3-small w3-border w3-round w3-white w3-hover-black">
+    <a href="restaurants?query=<%=item.categories.name%>&city=<%=city%>&count=20&lat=&lon=&sort=rating&order=desc"
+        style="text-decoration: none;"><%= item.categories.name %>
+    </a>
+</div>
+<% }); %>
+</div>

@@ -1,0 +1,20 @@
+<div class="w3-row-padding">
+    
+    <%- include('../layout/partials/sub-header') %> 
+
+    <div class="w3-center" style="margin-top:10px;">
+        
+        <div class="w3-row-padding" style="margin-top:20px;margin-bottom: 20px;">
+            <% cities.forEach( (item) => { %>
+            <a href="<%= path %>?query=restaurants&city=<%= item.city_name %>&count=20" style="text-decoration: none;">
+                <div class="w3-container w3-col s6 m3 l3" style="margin-bottom: 20px;">
+                    <div class="w3-card">
+                        <div class="w3-xlarge"><%= item.city_name %></div>
+                        <img src="<%= item.image_url %>" style="width:100%;">
+                    </div>
+                </div>
+            </a>
+            <% }); %>
+        </div>
+    </div>
+</div>

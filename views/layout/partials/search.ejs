@@ -1,0 +1,35 @@
+<!--Search Bar-->
+<div class="w3-container-fluid w3-light-gray">
+    <div class="w3-row">
+        <div class="w3-col s1 m3">&nbsp;</div>
+        <div class="w3-col s10 m6 w3-margin-bottom">
+            <p class="w3-xlarge">What are you craving?</p>
+            <form id="search" class="w3-container-fluid w3-center" method="GET" action="search">
+                <div class="w3-bar w3-center">
+                    <a id="near-me" class="w3-bar-item w3-btn w3-black w3-mobile" onclick="initMap()">
+                        <i class="fas fa-crosshairs"></i> <span class="w3-hide-medium w3-hide-large">Near me</span>
+                    </a>
+                    <input class="w3-bar-item w3-input w3-mobile" type="search" placeholder="What are you craving?"
+                        name="query" value="<% if (request) { %><%=request.query%><% }%>">
+
+                    <select class="w3-bar-item w3-select w3-mobile text-center" name="city">
+                        <% cities.forEach( (item) => { %>
+                        <option <% if (city === item.city_name){ %>selected<% } %>><%= item.city_name %>
+                        </option>
+                        <% }); %>
+                    </select>
+                    
+                    <button class="w3-bar-item w3-btn w3-black w3-mobile" type="submit">
+                        <i class="fas fa-search"></i>
+                        <span class="w3-hide-medium w3-hide-large">&nbsp;Search</span>
+                    </button>
+                    <input class="w3-bar-item w3-input w3-padding w3-mobile" type="hidden" id="lat" name="lat" >
+                    <input class="w3-bar-item w3-input w3-padding w3-mobile" type="hidden" id="lon" name="lon" >
+                    <input class="w3-bar-item w3-input w3-padding w3-mobile" type="hidden" name="number" value="20">
+
+                </div>
+            </form>
+        </div>
+        <div class="w3-col s1 m3">&nbsp;</div>
+    </div>
+</div>

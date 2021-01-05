@@ -1,0 +1,46 @@
+<!-- Navigation-->
+<div>
+
+    <span class="w3-button w3-hide-large w3-xxlarge w3-hover-text-grey"><i class="fa fa-bars"></i></span>
+    <div class="w3-container">
+        <div class="w3-bar w3-bottombar w3-padding-16">
+            <a href="../" class="w3-bar-item w3-button <% if (pageTitle === 'Home') { %> w3-black <%}else{%>w3-white <%}%>">Home</a>
+            
+
+            <a
+                class="w3-bar-item w3-button 
+            <% if (pageTitle === 'Cuisines') { %> w3-black <%}else{%>w3-white <%}%>"
+            href="../cuisines/list"
+            ><i class="fa fa-diamond w3-margin-right"></i> Cuisines</a>
+            
+            <a 
+            href="/search?query=restaurant&city=<%= city %>&count=20&lat=&lon="
+            class="w3-bar-item w3-button <% if (pageTitle === 'Restaurant') { %>w3-black<% } else { %>w3-white<% } %>">Restaurants</a>
+            </a>
+
+            <span class="w3-bar-item w3-margin-left w3-small">SORT BY</span>
+
+            <select form="nav-search" id="sort" name="sort" class="w3-bar-item w3-select">
+                <% options.sortOptions.forEach( (item) => { %>
+                <option><%= item.toUpperCase() %></option>
+                <% }); %>
+            </select>
+
+            <select form="nav-search" id="order" name="order" class="w3-bar-item w3-select">
+                <% options.orderOptions.forEach( (item) => { %>
+                <option><%= item.toUpperCase() %></option>
+                <% }); %>
+            </select>
+
+            <form id="nav-search" method="GET" action="../<%= path %>?query"></form>
+            <button form="nav-search" class="w3-button w3-black w3-bar-item">Filter</button>
+
+        </div>
+
+        <% if ( template !== 'cuisines') {%>
+            <%- include('./categories') %>
+        <% } %>
+        
+        <h1><b><%= pageTitle %></b></h1>
+    </div>
+</div>

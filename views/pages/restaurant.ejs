@@ -1,0 +1,56 @@
+<div class="w3-container">
+
+    <div class="w3-row">
+
+        <div id="res-details" class="w3-hidex">
+            <span class="res-id"><%= restaurant.id %></span>
+            <span class="res-name"><%= restaurant.name %></span>
+            <span class="res-lat"><%= restaurant.location.latitude %></span>
+            </span class="res-lon"><%= restaurant.location.longitude %></span>
+        </div>
+
+        <div class="w3-col s12 m6">
+            <div class="w3-row">
+                <div class="w3-col s12">
+                <img src="<%= restaurant.featured_image %>" style="width: 100%;">
+                </div>
+                <% images.forEach( (image) => { %>
+                    <div class="w3-col s12 m6 ">
+                        <div style="margin: 5px;"><img src='<%= image %>' style="width: 100%;border-radius: 0%;"></div>
+                    </div>
+                <% }); %>
+            </div>
+            <a class="w3-button w3-small w3-black" target="_blank" 
+            href="/photo-search?query=<%= restaurant.cuisines.replace(",","").replace(" ","+") %>+food">View more Photos</a>
+        </div>
+
+        <div class="w3-col s12 m6">
+            <div class="w3-container">
+                <div>
+                    <p class="w3-tag">Address</p><br>
+                    <%= restaurant.phone_numbers %>
+                    <%= restaurant.location.address %><br>
+                    <%= restaurant.location.city %><br>
+                    <%= restaurant.location.city_id %><br>
+                    <%= restaurant.location.zipcode %><br>
+                </div>
+                <p class="w3-tag">Cuisines</p>
+                <span><%= restaurant.cuisines %></span><br>
+                <p class="w3-tag">Opening Hours</p><br>
+                <span><%= restaurant.timings %></span><br>
+                <p class="w3-tag">Pricing</p><br>
+                Price Range: <span class="w3-tag w3-light-grey" style="letter-spacing: 2px;;">
+                    <%if (restaurant.price_range==1) {%> <i class="fas fa-dollar-sign"></i> <%}%>
+    <%if (restaurant.price_range==2) {%> <i class="fas fa-dollar-sign"></i><i class="fas fa-dollar-sign"></i> <%}%>
+    <%if (restaurant.price_range==3) {%> <i class="fas fa-dollar-sign"></i><i class="fas fa-dollar-sign"></i><i
+                        class="fas fa-dollar-sign"></i> <%}%></span><br>
+    Cost for two: $<%= restaurant.average_cost_for_two %>
+
+                    <p><a class="w3-button w3-small w3-black" target="_blank" href="<%= restaurant.menu_url %>">View Menu</a></p>
+                    <p class="w3-large">Rating</p>
+                    <span class="w3-tag w3-light-grey"><%= restaurant.user_rating.aggregate_rating%>
+                        (<%= restaurant.user_rating.votes%>)</span> <span
+                        class="w3-tag"><%= restaurant.user_rating.rating_text%></span>
+            </div>
+        </div>
+    </div>
