@@ -189,7 +189,6 @@ module.exports = (PORT) => {
   });
 
   router.get("/restaurants", (req, res, next) => {
-    // console.log(req.query);
     let city = req.query.city;
     let query = req.query.query;
     let count = req.query.number;
@@ -198,10 +197,12 @@ module.exports = (PORT) => {
     let request = req.query;
     let sort = req.query.sort;
     let order = req.query.order;
+
     zomato
       .search(city, query, count, lat, lon, sort, order)
       .then((response) => {
         let template = response ? "restaurants" : "no-results";
+        console.log("eres")
         res.render("layout", {
           pageTitle: "Restaurants",
           template,
@@ -212,8 +213,10 @@ module.exports = (PORT) => {
           cities: options.cities,
           city,
           restaurants: response,
-          // google_key: process.env.GOOGLE_API_KEY
+          google_key: process.env.GOOGLE_API_KEY
         });
+      }).catch( error => {
+        res.send( { error })
       });
   });
 
@@ -287,10 +290,10 @@ module.exports = (PORT) => {
     let lon = req.query["lon"];
     let sort = "rating";
     let order = "desc";
-    // let request = req.query;
-    res.redirect(
-      `http://localhost:${PORT}/restaurants?query=${query}&city=${city}&count=${count}&lat=${lat}&lon=${lon}&sort=${sort}&order=${order}`
-    );
+    let request = req.query;
+    let url = `http://localhost:${PORT}/restaurants?query=${query}&city=${city}&count=${count}&lat=${lat}&lon=${lon}&sort=${sort}&order=${order}`;
+    // res.send( { request , url })
+    res.redirect(url);
   });
 
   router.get("/restaurants/search", (req, res, next) => {
